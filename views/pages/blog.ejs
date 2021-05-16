@@ -1,0 +1,5 @@
+<h1>meu blog</h1>
+
+    <% Object.entries(_posts).forEach(function(post){ %>
+        <%- post[1].contents %>
+    <% }); %>
