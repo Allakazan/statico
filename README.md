@@ -1,5 +1,7 @@
 # Statico
 
+![alt text](https://i.imgur.com/dOOnThg.png)
+
 ## Node.js Static Site Generator
 
 I didn't like any of the SSG's, so i decided to create my own
