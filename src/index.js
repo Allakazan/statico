@@ -1,6 +1,5 @@
-const Routing = require('./Service/Routing');
+const Routes = require('./routes');
 
-Routing.route('index', '/')
-Routing.route('blog', '/blog')
+let action = process.argv.slice(2)[0] ? process.argv.slice(2)[0] : 'serve';
 
-Routing.init('build')
+Routes.init(action)
