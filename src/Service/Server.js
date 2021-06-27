@@ -2,27 +2,25 @@ const WebSocket = require('ws');
 const chokidar = require('chokidar');
 const open = require('open');
 
-module.exports = class Server {
+let watchDirs = [
+    './public',
+    './views',
+    './content'
+];
 
-    static sockets = [];
+let watchSettings = {
+    ignoreInitial: true
+};
 
-    static watchDirs = [
-        './public',
-        './views',
-        './content'
-    ]
+module.exports = {
+    sockets: [],
 
-    static watchSettings = {
-        ignoreInitial: true
-    }
-
-    static listenForChanges(callback) {
-        chokidar.watch(this.watchDirs, this.watchSettings).on('all', (event, path) => {
+    listenForChanges(callback) {
+        chokidar.watch(watchDirs, watchSettings).on('all', (event, path) => {
             callback(event, path)
         });          
-    }
-
-    static startHTTPServer() {
+    },
+    startHTTPServer() {
         const connect = require('connect');
         const stat = require('serve-static');
 
@@ -33,9 +31,8 @@ module.exports = class Server {
 
         console.log('Http server on localhost:3033');
         open('http://localhost:3033');
-    }
-
-    static startWSServer() {
+    },
+    startWSServer() {
         const server = new WebSocket.Server({
             port: 3000,
             path: "/ws"

@@ -2,15 +2,17 @@ const TemplateEngine = require('./TemplateEngine');
 const Markdown = require('./Markdown');
 const Server = require('./Server');
 
-module.exports = class Routing {
-    
-    static routes = []
-    
-    static route(file, directory = '/') {
-        this.routes.push({file , directory})
-    }
+let routes = [];
+let postRoute = false;
 
-    static init(action) {
+module.exports = {
+    route(file, directory = '/') {
+        routes.push({file , directory})
+    },
+    usePost(file, directory = '/') {
+        postRoute = {file , directory}
+    },
+    init(action) {
         switch (action) {
             case 'build':
                 return this.build();
@@ -18,34 +20,43 @@ module.exports = class Routing {
                 return this.serve();
                 break;
         }
-    }
+    },
+    async getContent(file, params) {
+        return await TemplateEngine.renderPage(file, params)
+    },
+    async build() {
 
-    static async getContent(file) {
-        const markdownContent = await Markdown.renderMarkdown()
+        const markdownData = await Markdown.renderMarkdown()
 
-        return await TemplateEngine.renderPage(file, {
-            _posts: markdownContent.posts,
-            _projects: markdownContent.projects
-        })
-    }
-
-    static async build() {
-        
         TemplateEngine.createDistFolder();
         TemplateEngine.copyAssets();
 
-        for (const route of this.routes) {
+        for (const route of routes) {
             if (TemplateEngine.viewExists(route.file)) {
-                const htmlContent = await this.getContent(route.file)
+                const htmlContent = await this.getContent(route.file, {
+                    _posts: markdownData.posts,
+                    _projects: markdownData.projects
+                })
 
                 TemplateEngine.saveFile(route.file, route.directory, htmlContent)
             } else {
                 console.log('Warning: View ' + route.file + " was not found.")
             }
         }
-    }
 
-    static async serve() {
+        if (postRoute) {
+
+            for (const [key, data] of Object.entries(markdownData.posts)) {
+
+                const htmlContent = await this.getContent(postRoute.file, {
+                    _pagePost: data,
+                })
+
+                TemplateEngine.saveFile(data.fileInfo.name, postRoute.directory, htmlContent)
+            }
+        }
+    },
+    async serve() {
         TemplateEngine.serveMode = true;
         await this.build()
 

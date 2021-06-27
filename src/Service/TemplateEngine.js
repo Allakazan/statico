@@ -2,44 +2,39 @@ const ejs = require('ejs');
 const fs = require('fs');
 const fse = require('fs-extra');
 
-module.exports = class TemplateEngine {
+let dirFolder = './dist';
+let defaultOptions = {};
 
-    static dirFolder = './dist';
-    static defaultOptions = {};
-    static serveMode = false;
-
-    static async renderPage(page, data) {
-        return await ejs.renderFile('./views/layout.ejs', Object.assign({page: page}, data, {dev: this.serveMode}), this.defaultOptions);
-    }
-
-    static createDistFolder() {
+module.exports = {
+    serveMode: false,
+    async renderPage(page, data) {
+        return await ejs.renderFile('./views/layout.ejs', Object.assign({page: page}, data, {dev: this.serveMode}), defaultOptions);
+    },
+    createDistFolder() {
         try {
-            fs.rmdirSync(this.dirFolder, { recursive: true });
-            fs.mkdirSync(this.dirFolder);
+            fs.rmdirSync(dirFolder, { recursive: true });
+            fs.mkdirSync(dirFolder);
         } catch(err) {
             console.error(err);
         }
-    }
-
-    static viewExists(view) {
+    },
+    viewExists(view) {
         return fs.existsSync('./views/pages/'+ view +'.ejs')
-    }
-
-    static saveFile(file, dir, content) {
-        fs.mkdirSync(this.dirFolder + dir, { recursive: true })
+    },
+    saveFile(file, dir, content) {
+        fs.mkdirSync(dirFolder + dir, { recursive: true })
 
         try {
-            fs.writeFileSync(this.dirFolder + dir + "/" + file + ".html", content, {})
+            fs.writeFileSync(dirFolder + dir + "/" + file + ".html", content, {})
         } catch(err) {
             console.error(err);
         }
-    }
-
-    static copyAssets() {
+    },
+    copyAssets() {
         let files = fs.readdirSync('./public')
 
         for (const file of files) {
-            fse.copySync('./public/'+files, this.dirFolder + '/' + file);
+            fse.copySync('./public/'+files, dirFolder + '/' + file);
         }
     }
 }

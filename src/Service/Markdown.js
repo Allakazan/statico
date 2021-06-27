@@ -1,8 +1,9 @@
 const jdown = require('jdown');
 
-module.exports = class Markdown {
-    static async renderMarkdown() {
+module.exports = {
+    async renderMarkdown() {
         return await jdown('content', {
+            fileInfo: true,
             markdown: {
                 highlight: function(code, language) {
                     const hljs = require("highlight.js");
