@@ -1,2 +1,93 @@
-<h1>Site Under construction</h1>
-<p>Come back later pal'</p>
+<%- include('../components/header', {}); %>
+<div id="fullpage" class="fixed-container">
+    <div class="section title" data-anchor="title">
+        <h1>Bruno Marques</h1>
+        <p><span class="baffle">Web Developer</span></p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github-square"></i></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-behance-square"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-itch-io"></i></a>
+        </div>
+    </div>
+    <div class="section bg-darker">
+        <div class="work-container">
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element open-modal"><span>Musician Days</span></a>
+                <div class="modal-content">
+                    <div class="modal-slider animate__animated animate__fadeInUp">
+                        <div class="modal-slider-header">
+                            <div class="left-section">
+                                <a href="#" class="modal-close">
+                                    <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-close">
+                                        <path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="right-section">
+                                <a href="#" class="modal-expand"><i class="fas fa-expand-alt"></i></a>
+                                <a href="#" class="modal-compress"><i class="fas fa-compress-alt"></i></a>
+                            </div>
+                        </div>
+                        <div class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list" style="width: 100%;">
+                                    <li class="splide__slide" style="width: 100%;">
+                                        <img src="https://picsum.photos/500/300" alt="">
+                                    </li>
+                                    <li class="splide__slide" style="width: 100%;">
+                                        <img src="https://picsum.photos/500/500" alt="">
+                                    </li>
+                                    <li class="splide__slide" style="width: 100%;">
+                                        <img src="https://picsum.photos/300/500" alt="">
+                                    </li>
+                                    <li class="splide__slide" style="width: 100%;">
+                                        <img src="https://picsum.photos/500/300" alt="">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-description animate__animated animate__fadeInDown">
+                        <h1>My stunning work</h1>
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                            Illum aperiam quos quod, itaque facere recusandae ad aspernatur 
+                            nemo nihil dignissimos, sint amet consequatur provident ea! 
+                            Libero perspiciatis in facere modi?
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>Agree App</span></a>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>vanilla-tilt.js</span></a>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>vanilla-tilt.js</span></a>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>vanilla-tilt.js</span></a>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>vanilla-tilt.js</span></a>
+            </div>
+            <div class="work-item fade-on-enter">
+                <a href="#" class="work-link tilt-element"><span>vanilla-tilt.js</span></a>
+            </div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+            <div class="work-item"></div>
+        </div>
+    </div>
+    <div class="section bg-darker">
+        Some section
+    </div>
+    <div class="section bg-darker">Some section</div>
+</div>
+<div class="bg-modal"></div>
+<div class="modal-wrapper"></div>
