@@ -1,3 +1,6 @@
+function initAOS() {
+    AOS.init();
+}
 
 function initBaffle() {
     let s = ["█", "▓", "▒", "░", "█", "▓", "▒", "░", "█", "▓", "▒", "░", "<", ">", "/"]
@@ -38,46 +41,6 @@ function initBaffle() {
     setInterval(changeCallback, 2000)
 }
 
-function initTiltJs() {
-    VanillaTilt.init(document.querySelectorAll(".tilt-element"), {
-        max: 8,
-        speed: 400,
-        scale: 1.1,
-        perspective: 500,
-        glare: true,
-        "max-glare": 0.5 
-    });
-}
-
-function initFullPage() {
-    new fullpage('#fullpage', {
-        //options here
-        navigation: true,
-        easingcss3: 'cubic-bezier(0.810, 0.030, 0.470, 0.885)',
-        scrollOverflow: true,
-        scrollOverflowOptions: {
-            freeScroll: true,
-            momentum: true,
-            fadeScrollbars: true,
-            snap: '.work-item'
-        },
-        afterLoad: function(anchorLink, index){
-            Array.prototype.slice.call(index.item.querySelectorAll('.fade-on-enter')).map(function(el, index) {
-                if (!el.classList.contains('animate__animated')) {
-                    let animateClass = 'animate__fadeInUp'
-
-                    /*if (index % 2 != 0) {
-                        animateClass = 'animate__fadeInTopRight'
-                    }*/
-
-                    el.classList.add('animate__animated', animateClass)
-                    el.style.setProperty('animation-delay', (200 * index) + 'ms');
-                }
-            })
-        },
-    });
-}
-
 function initThreeJS() {
     let screenSize = {
         width: document.documentElement.clientWidth,
@@ -88,6 +51,7 @@ function initThreeJS() {
 
     let renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize( screenSize.width, screenSize.height );
+    renderer.domElement.id = 'threejs'
     document.body.appendChild( renderer.domElement );
 
     const geometry = new THREE.IcosahedronGeometry();
@@ -189,4 +153,16 @@ function initModals() {
             }, 450)
         })
     }) 
+}
+
+function initLiquidEffect() {
+    new LiquidEffect({
+        appendTo: "#photo-liquid",
+        image: 'assets/img/my_happy_face.png',
+        displacementImage: "assets/img/displacement_map.jpg",
+        displacementScale: .5,
+        speed: 1,
+        intensityX: 1,
+        intensityY: 1,
+    });
 }
