@@ -8,6 +8,8 @@ export const downloadAsset = async (filePath) => {
     const fileID = Buffer.from(filePath).toString('base64');
     let fileData = '';
 
+    if (!fs.existsSync('./cache/')) fs.mkdirSync('./cache/');
+
     if (fs.existsSync('./cache/' + fileID)) {
         fileData = fs.readFileSync('./cache/' + fileID, { encoding: 'utf-8'})
 
