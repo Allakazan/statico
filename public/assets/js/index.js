@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', function () {
+    initAOS()
+    initBaffle()
+    initThreeJS()
+    initModals()
+    initLiquidEffect()
+});
+
 function initAOS() {
     AOS.init();
 }

@@ -1,5 +1,5 @@
-const Routes = require('./routes');
+import Routing from "./routes.js";
 
 let action = process.argv.slice(2)[0] ? process.argv.slice(2)[0] : 'serve';
 
-Routes.init(action)
+Routing.init(action)

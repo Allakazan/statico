@@ -1,53 +1,56 @@
-const WebSocket = require('ws');
-const chokidar = require('chokidar');
-const open = require('open');
+import WebSocket from "ws";
+import chokidar from "chokidar";
+import open from "open";
+import connect from "connect";
+import stat from 'serve-static';
 
-let watchDirs = [
+const watchDirs = [
     './public',
     './views',
     './content'
 ];
 
-let watchSettings = {
+const watchSettings = {
     ignoreInitial: true
 };
 
-module.exports = {
-    sockets: [],
+const Server = {}
 
-    listenForChanges(callback) {
-        chokidar.watch(watchDirs, watchSettings).on('all', (event, path) => {
-            callback(event, path)
-        });          
-    },
-    startHTTPServer() {
-        const connect = require('connect');
-        const stat = require('serve-static');
+Server.sockets = []
 
-        const server = connect();
-        server.use(stat('./dist'));
-
-        server.listen( 3033 );
-
-        console.log('Http server on localhost:3033');
-        open('http://localhost:3033');
-    },
-    startWSServer() {
-        const server = new WebSocket.Server({
-            port: 3000,
-            path: "/ws"
-        });
-        
-        server.on('open', () => {
-            console.log('WS server on localhost:3000');
-        })
-
-        server.on('connection', (socket) => {
-            this.sockets.push(socket);
-
-            socket.on('close', () => {
-                this.sockets = this.sockets.filter(s => s !== socket);
-            });
-        });
-    }
+Server.listenForChanges = (callback) => {
+    chokidar.watch(watchDirs, watchSettings).on('all', (event, path) => {
+        callback(event, path)
+    });          
 }
+
+Server.startHTTPServer = () => {
+    const server = connect();
+    server.use(stat('./dist'));
+
+    server.listen( 3033 );
+
+    console.log('Http server on localhost:3033');
+    open('http://localhost:3033');
+}
+
+Server.startWSServer = () => {
+    const server = new WebSocket.Server({
+        port: 3000,
+        path: "/ws"
+    });
+    
+    server.on('open', () => {
+        console.log('WS server on localhost:3000');
+    })
+
+    server.on('connection', (socket) => {
+        Server.sockets.push(socket);
+
+        socket.on('close', () => {
+            Server.sockets = Server.sockets.filter(s => s !== socket);
+        });
+    });
+}
+
+export default Server;

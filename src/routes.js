@@ -1,7 +1,7 @@
-const Routing = require('./Service/Routing');
+import Routing from "./Service/Routing.js";
 
 Routing.route('index', '/')
 Routing.route('blog', '/blog')
 Routing.usePost('post', '/blog')
 
-module.exports = Routing
+export default Routing;

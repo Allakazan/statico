@@ -14,25 +14,9 @@
 <body>
     <%- include('pages/'+page, {}); %>
     <% if (dev) { %>
-        <script src="./assets/js/ws.js"></script>
+        <%- include('components/wsClient.ejs', {}); %>
     <% } %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baffle.js/0.3.6/baffle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://threejs.org/build/three.js"></script>
-    <script src="https://threejs.org/examples/js/effects/AnaglyphEffect.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pixi.js@5.3.3/dist/pixi.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pixi-filters@2.6.1/dist/pixi-filters.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-    <script src="./assets/js/liquid.js"></script>
-    <script src="./assets/js/index.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            initAOS()
-            initBaffle()
-            initThreeJS()
-            initModals()
-            initLiquidEffect()
-        });
-    </script>
+    <script src="./assets/js/chunk-vendors.bundle.js"></script>
+    <script src="./assets/js/app.bundle.js"></script>
 </body>
 </html>
