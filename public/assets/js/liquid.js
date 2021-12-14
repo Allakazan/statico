@@ -20,9 +20,11 @@ class LiquidEffect {
     generateCanvas(root, image, speed, displacementImage, displacementScale, intensityX, intensityY) {
         PIXI.utils.skipHello();
 
+        const canvasSize = 700;
+
         const app = new PIXI.Application({
-            width: 700,
-            height: 700,
+            width: canvasSize,
+            height: canvasSize,
             transparent: true,
             resolution: window.devicePixelRatio || 1
         });
@@ -53,7 +55,7 @@ class LiquidEffect {
         graphics.buttonMode = !1;
         app.stage.addChild(graphics);
         graphics.beginFill(0, .001);
-        graphics.drawRect(10, 10, 680, 580);
+        graphics.drawRect(0, 0, canvasSize, canvasSize);
         graphics.endFill();
         
         const filter = new PIXI.filters.DisplacementFilter(spriteDisplacement);
@@ -70,14 +72,18 @@ class LiquidEffect {
         filter.scale.x = 15 * intensityX;
         filter.scale.y = 25 * intensityY;
 
-        app.ticker.add(() => {
-            
-            graphics.on("pointermove", e => {
-                const i = this.scale(e.data.global.x, 0, 700, 0, 5);
+        const maxMoveAmount = 10;
 
-                rgbFilter.red = [5 * i, 0]
-                rgbFilter.green = [0, 1]
-                rgbFilter.blue = [5 * i, 0]
+        app.ticker.add(() => {
+
+            graphics.on("pointermove", e => {
+                let valueX = this.scale(e.data.global.x, 0, 700, 0, maxMoveAmount);
+                let valueY = this.scale(e.data.global.y, 0, 700, 0, maxMoveAmount);
+
+
+                rgbFilter.red = [valueX, valueY]
+                rgbFilter.green = [0, 0]
+                rgbFilter.blue = [0, 0]
             });
             
             graphics.on("pointerout", e => {

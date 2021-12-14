@@ -9,13 +9,23 @@
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 </head>
-<body>
+<body class="loading">
     <%- include('pages/'+page, {}); %>
     <% if (dev) { %>
         <%- include('components/wsClient.ejs', {}); %>
     <% } %>
+    <div id="page-loader" class="page-loader__wrapper">
+        <div class="page-loader__spinner"><div class="icon"></div></div>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            document.body.classList.remove("loading")
+            document.getElementById("page-loader").remove()
+        });
+    </script>
     <script src="./assets/js/chunk-vendors.bundle.js"></script>
     <script src="./assets/js/app.bundle.js"></script>
 </body>
