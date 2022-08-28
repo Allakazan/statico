@@ -2,9 +2,9 @@ window.addEventListener('load', function () {
     initAOS()
     initBaffle()
     initThreeJS()
+    initThreeJSAboutMe()
     initIsotope()
     initModals()
-    initLiquidEffect()
 });
 
 function initAOS() {
@@ -95,6 +95,72 @@ function initThreeJS() {
 
     animate();
 
+}
+
+function initThreeJSAboutMe() {
+    
+    const wrapper = document.getElementById("photo-liquid");
+    const canvasSize = {
+        width: 1000,
+        height: 1000
+    }
+
+    let scene = new THREE.Scene();
+
+    const perspective = 1800;
+    const fov = (180 * (2 * Math.atan(canvasSize.height / 2 / perspective))) / Math.PI
+
+    let camera = new THREE.PerspectiveCamera( fov, canvasSize.width / canvasSize.height, .1, 3000 );
+    camera.position.set(0, 0, perspective)
+
+    let renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize( canvasSize.width, canvasSize.height );
+    renderer.domElement.id = 'threejs-liquid'
+    wrapper.appendChild( renderer.domElement );
+
+    const ambientlight = new THREE.AmbientLight(0xffffff, 2)
+    scene.add(ambientlight)
+
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('assets/img/my_happy_face.png');
+    const padding = 200;
+
+    const sizes = new THREE.Vector2(canvasSize.width - padding, canvasSize.height - padding)
+    const offset = new THREE.Vector2(0, 0)
+
+    const geometry = new THREE.PlaneBufferGeometry(1, 1, 1, 1)
+    const material = new THREE.MeshBasicMaterial({
+        map: texture
+    })
+
+    const mesh = new THREE.Mesh(geometry, material)
+
+    mesh.position.set(offset.x, offset.y, 0)
+    mesh.scale.set(sizes.x, sizes.y, 1)
+
+    scene.add(mesh)
+
+    window.addEventListener('mousemove', (e) => { 
+        const windowPos = {
+            x: (e.clientX / window.innerWidth) * 2 - 1,
+            y: -(e.clientY  / window.innerHeight) * 2 + 1
+        }
+
+        const rotationValue = {
+            x: -windowPos.y * 0.3,
+            y:  windowPos.x * (Math.PI / 6)
+        }
+
+        mesh.rotation.set(rotationValue.x, rotationValue.y, 0);
+    })
+
+
+    function animate() {
+        requestAnimationFrame( animate );	
+        renderer.render( scene, camera );
+    }
+
+    animate();
 }
 
 function initIsotope() {
@@ -196,16 +262,4 @@ function initModals() {
             }, 450)
         })
     }) 
-}
-
-function initLiquidEffect() {
-    new LiquidEffect({
-        appendTo: "#photo-liquid",
-        image: 'assets/img/my_happy_face.png',
-        displacementImage: "assets/img/displacement_map.jpg",
-        displacementScale: .5,
-        speed: 1,
-        intensityX: 1,
-        intensityY: 1,
-    });
 }
