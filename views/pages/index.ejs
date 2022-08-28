@@ -10,7 +10,7 @@
             <a href="#" target="_blank"><i class="fab fa-itch-io"></i></a>
         </div>
     </div>
-    <div class="section bg-darker">
+    <div class="section section__darker">
         <div class="section__darkness-overlay"></div>
         <div class="about-me-container">
             <div data-aos="fade-right" class="about-me-container__content">
@@ -22,38 +22,32 @@
             <div data-aos="fade-up" id="photo-liquid"></div>
         </div>
         <div class="filter-container">
-            <button type="button" class="btn btn__active">All</button>
-            <button type="button" class="btn">Web Development</button>
-            <button type="button" class="btn">Game Dev</button>
-            <button type="button" class="btn">3D Modeling</button>
-            <button type="button" class="btn">UI / UX</button>
+            <button type="button" class="btn btn__active btn--filter" data-filter="*">All</button>
+            <button type="button" class="btn btn--filter" data-filter=".web-development">Web Development</button>
+            <button type="button" class="btn btn--filter" data-filter=".game-development">Game Dev</button>
+            <button type="button" class="btn btn--filter" data-filter=".modeling">3D Modeling</button>
+            <button type="button" class="btn btn--filter" data-filter=".uiux">UI / UX</button>
         </div>
         <div class="work-container">
-            <div class="work-item">
-                <img src="assets/img/displacement_map.jpg" class="graphic-backdrop">
-                <a href="#" class="work-link open-modal">
-                    <h2>SomeAppIMade.js</h2>
-                    <p>Some app i made to spare time !</p>
-                    <div class="icon-area">
-                        <i class="devicon-javascript-plain colored"></i>
+            <% _projects.sort((a, b) => new Date(b.date * 1000) - new Date(a.date * 1000)).map((project) => { %>
+                <div class="work-container__item <%= project.categories.reduce((acc, c) => `${c} ${acc}`, '') %>">
+                    <div class="work-container__item--thumbnail">
+                        <img src="<%= project.thumbnail %>" alt="<%= project.title %>">
                     </div>
-                </a>
-                <%- include('../components/modal', {}); %>
-            </div>
-            <div class="work-item">
-                <img src="assets/img/my_happy_face.png" class="graphic-backdrop">
-                <a href="#" class="work-link open-modal">
-                    <h2>SomeAppIMade.js</h2>
-                    <p>Some app i made to spare time !</p>
-                    <div class="icon-area">
-                        <i class="devicon-nodejs-plain colored"></i>
-                        <i class="devicon-react-plain colored"></i>
-                    </div>
-                </a>
-                <%- include('../components/modal', {}); %>
-            </div>
+                    <a href="#" class="work-container__item--link open-modal">
+                        <h2><%= project.title %></h2>
+                        <p><%= project.description %></p>
+                        <div class="icon-area">
+                            <% for (let lang of project.langs) { %>
+                                <i class="devicon-<%= lang %> "></i>
+                            <% } %>
+                        </div>
+                    </a>
+                    <%- include('../components/modal', { project }); %>
+                </div>
+            <% }); %>
         </div>
     </div>
 </main>
-<div class="bg-modal"></div>
+<div class="modal-background"></div>
 <div class="modal-wrapper"></div>

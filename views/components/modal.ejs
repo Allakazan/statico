@@ -16,29 +16,21 @@
         <div class="splide">
             <div class="splide__track">
                 <ul class="splide__list" style="width: 100%;">
-                    <li class="splide__slide" style="width: 100%;">
-                        <img src="https://picsum.photos/500/300" alt="">
-                    </li>
-                    <li class="splide__slide" style="width: 100%;">
-                        <img src="https://picsum.photos/500/500" alt="">
-                    </li>
-                    <li class="splide__slide" style="width: 100%;">
-                        <img src="https://picsum.photos/300/500" alt="">
-                    </li>
-                    <li class="splide__slide" style="width: 100%;">
-                        <img src="https://picsum.photos/500/300" alt="">
-                    </li>
+                    <% for (let media of project.media) { %>
+                        <li class="splide__slide" style="width: 100%;">
+                            <% if (media.type == 'image') { %>
+                                <img src="<%= media.url %>" alt="<%= media.title %>">     
+                            <% } %>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </div>
     </div>
     <div class="modal-description animate__animated animate__fadeInDown">
-        <h1>My stunning work</h1>
-        <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-            Illum aperiam quos quod, itaque facere recusandae ad aspernatur 
-            nemo nihil dignissimos, sint amet consequatur provident ea! 
-            Libero perspiciatis in facere modi?
-        </p>
+        <h1><%= project.title %></h1>
+        <div class="modal-description-markdown">
+            <%- project.contents %>
+        </div>
     </div>
 </div>

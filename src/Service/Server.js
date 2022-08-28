@@ -7,6 +7,7 @@ import stat from 'serve-static';
 const watchDirs = [
     './public',
     './views',
+    './scss',
     './content'
 ];
 

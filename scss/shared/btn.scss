@@ -1,0 +1,28 @@
+.btn {
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 3;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 22px;
+    padding: 10px 20px;
+    transition: all 0.2s linear;
+
+    &:hover {
+        color: black;
+        background: #fff;
+        border-color: white;
+    }
+
+
+    &__active {
+        color: black;
+        background: #fff;
+        border-color: white;
+    }
+}

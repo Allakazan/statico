@@ -1,0 +1,16 @@
+.about-me-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 100px 10vw;
+
+    &__content {
+        padding: 30px 20px;
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-family: 'Megrim', cursive;
+        }
+    }
+}

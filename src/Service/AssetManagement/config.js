@@ -8,6 +8,7 @@ export default {
             'https://cdn.jsdelivr.net/npm/pixi.js@5.3.3/dist/pixi.min.js',
             'https://cdn.jsdelivr.net/npm/pixi-filters@2.6.1/dist/pixi-filters.js',
             'https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js',
+            'https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js',
             './public/assets/js/liquid.js',
             './public/assets/js/index.js'
         ]

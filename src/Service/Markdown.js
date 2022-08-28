@@ -11,7 +11,7 @@ Markdown.renderMarkdown = async () => {
                 const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
                 return hljs.highlight(code, {language: validLanguage}).value;
             },
-            breaks: false,
+            breaks: true,
             sanitize: false,
             headerIds: false
         }

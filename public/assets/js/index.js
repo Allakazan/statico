@@ -2,6 +2,7 @@ window.addEventListener('load', function () {
     initAOS()
     initBaffle()
     initThreeJS()
+    initIsotope()
     initModals()
     initLiquidEffect()
 });
@@ -85,7 +86,41 @@ function initThreeJS() {
         geo.rotation.x += speed * delta;
         geo.rotation.y += speed * delta;
     }
+    
+    window.addEventListener( 'resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+    }, false );
+
     animate();
+
+}
+
+function initIsotope() {
+    
+    const grid = new Isotope( '.work-container', {
+        itemSelector: '.work-container__item',
+        percentPosition: true,
+        masonry: {
+            columnWidth: '.work-container__item'
+          }
+    });
+
+
+    const filterButtons = [].slice.call(document.getElementsByClassName("btn--filter"))
+    
+    filterButtons.map((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            grid.arrange({ filter: e.currentTarget.dataset.filter })
+
+            filterButtons.map((b) => b.classList.remove('btn__active'))
+
+            e.currentTarget.classList.add('btn__active')
+        })
+    })
 }
 
 function initModals() {
@@ -96,7 +131,7 @@ function initModals() {
 
             let modal = e.currentTarget.nextElementSibling.cloneNode(true)
 
-            document.querySelector('.bg-modal').classList.add('active')
+            document.querySelector('.modal-background').classList.add('active')
 
             setTimeout(function() {
                 document.querySelector('.modal-wrapper').appendChild(modal)
@@ -113,7 +148,7 @@ function initModals() {
 
                 let closeModalAction = function() {
 
-                    document.querySelector('.bg-modal').classList.remove('active')
+                    document.querySelector('.modal-background').classList.remove('active')
                     document.querySelector('.modal-wrapper').classList.remove('active')
             
                     document.querySelector('.modal-wrapper').innerHTML = ''

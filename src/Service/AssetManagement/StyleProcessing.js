@@ -1,14 +1,14 @@
 import fs from 'fs';
 import fse from 'fs-extra';
+import sass from 'sass'
 
 const StyleProcessing = {};
 
 StyleProcessing.startProcessing = async () => {
-    let files = fs.readdirSync('./public/assets/css')
+    const {css, sourceMap} = sass.compile('./scss/styles.scss', {style: "compressed", sourceMap: true});
 
-    for (const file of files) {
-        fse.copySync('./public/assets/css/'+file, './dist/assets/css/' + file);
-    }
+    fs.writeFileSync('./dist/assets/css/app.bundle.css', css, { flag: 'w'});
+    fs.writeFileSync('./dist/assets/css/app.bundle.css.map', JSON.stringify(sourceMap), { flag: 'w'});
 }
 
 export default StyleProcessing;

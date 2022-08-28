@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+
+:root {
+    --bg-color: rgb(10, 10, 10);
+    --text-color: #eee;
+    --text-secondary: #bebebe;
+}
+
+* {
+    font-family: 'Nunito Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    /*overflow: hidden;*/
+    line-height: 1.5rem;
+
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+#threejs {
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    position: fixed;
+    top: 0;
+}
+
+#photo-liquid canvas {
+    width: 100%;
+}

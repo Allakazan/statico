@@ -1,0 +1,17 @@
+.social-links {
+    font-size: 2rem;
+    position: absolute;
+    left: 50px;
+    top:42%;
+    transform: translateX(-50%);
+
+    a {
+        display: block;
+        margin-bottom: 10px;
+        transition: opacity .1s linear;
+
+        &:hover {
+            opacity: .5;
+        }
+    }
+}

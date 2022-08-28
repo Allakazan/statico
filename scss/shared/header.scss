@@ -1,0 +1,35 @@
+header {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    z-index: 4;
+    background-color: var(--bg-color);
+
+    .header-logo {
+        display: inline-block;
+        font-family: 'Megrim', Arial, sans-serif;
+        font-size: 2.3rem;
+        padding: 10px;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    .link-navigation {
+        float: right;
+
+        li {
+            display: inline-block;
+            font-size: 1.1rem;
+            
+            a {
+                display: inline-block;
+                padding: 20px;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .4);
+                    opacity: .6;
+                }
+            }
+        }        
+    }
+}
