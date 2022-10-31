@@ -43,11 +43,6 @@ function initThreeJSAboutMe() {
         u_show_goey: { value: false }
     }
 
-
-    /*const material = new THREE.MeshBasicMaterial({
-        map: texture
-    })*/
-
     const material = new THREE.ShaderMaterial({
         uniforms: uniforms,
         vertexShader: GLSL_vertexShader,

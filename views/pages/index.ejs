@@ -34,7 +34,9 @@
                     <div class="work-container__item--thumbnail">
                         <img src="<%= project.thumbnail %>" alt="<%= project.title %>">
                     </div>
-                    <a href="#" class="work-container__item--link open-modal">
+                    <a href="<%= project.externalLink ? project.externalLink : "#" %>" 
+                        class="work-container__item--link <%= !project.externalLink ? "open-modal" : "" %>"
+                        <%= project.externalLink ? "target=\"_blank\"" : ""%>>
                         <h2><%= project.title %></h2>
                         <p><%= project.description %></p>
                         <div class="icon-area">
@@ -43,7 +45,9 @@
                             <% } %>
                         </div>
                     </a>
-                    <%- include('../components/modal', { project }); %>
+                    <% if (!project.externalLink) { %>
+                        <%- include('../components/modal', { project }); %>
+                    <% } %>
                 </div>
             <% }); %>
         </div>
