@@ -20,10 +20,10 @@
         <div class="page-loader__spinner"><div class="icon"></div></div>
     </div>
     <script>
-        window.addEventListener('load', function () {
+        setTimeout(() => {
             document.body.classList.remove("loading")
             document.getElementById("page-loader").remove()
-        });
+        },300);
     </script>
     <script src="./assets/js/chunk-vendors.bundle.js"></script>
     <script src="./assets/js/app.bundle.js"></script>

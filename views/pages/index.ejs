@@ -4,10 +4,9 @@
         <h1>Bruno Marques</h1>
         <p><span class="baffle">Web Developer</span></p>
         <div data-aos="fade-right" class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-github-square"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-behance-square"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-itch-io"></i></a>
+            <% _social.links.map(link => {%>
+                <a href="<%= link.url %>" title="<%= link.title %>" target="_blank"><i class="fab <%= link.icon %>"></i></a>
+            <% }); %>
         </div>
     </div>
     <div class="section section__darker">

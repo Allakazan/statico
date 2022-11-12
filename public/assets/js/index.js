@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
     initAOS()
     initBaffle()
     initThreeJS()

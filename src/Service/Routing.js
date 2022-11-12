@@ -42,7 +42,8 @@ Routing.build = async ({ serveMode = false } = {}) => {
         if (TemplateEngine.viewExists(route.file)) {
             const htmlContent = await Routing.getContent(route.file, {
                 _posts: markdownData.posts,
-                _projects: markdownData.projects
+                _projects: markdownData.projects,
+                _social: markdownData.social[0]
             })
 
             TemplateEngine.saveFile(route.file, route.directory, htmlContent)
