@@ -40,11 +40,7 @@ Routing.build = async ({ serveMode = false } = {}) => {
 
     for (const route of routes) {
         if (TemplateEngine.viewExists(route.file)) {
-            const htmlContent = await Routing.getContent(route.file, {
-                _posts: markdownData.posts,
-                _projects: markdownData.projects,
-                _social: markdownData.social[0]
-            })
+            const htmlContent = await Routing.getContent(route.file, markdownData)
 
             TemplateEngine.saveFile(route.file, route.directory, htmlContent)
         } else {

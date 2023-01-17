@@ -38,10 +38,10 @@
             color: white;
             padding: 0 35px;
             backdrop-filter: blur(0px);
-            transition: backdrop-filter .1s ease-in;
+            transition: backdrop-filter .2s ease-in;
 
             &:hover {
-                backdrop-filter: blur(30px);
+                backdrop-filter: blur(20px);
 
                 & h2 { transform: translateY(-50px); }
                 & p { transform: translateY(-50px); }
@@ -52,7 +52,7 @@
                 padding-top: 11vw;
                 font-size: 1.2rem;
                 font-weight: normal;
-                transition: transform .1s ease-in-out;
+                transition: transform .15s ease-in-out;
             }
 
             p {
@@ -61,7 +61,7 @@
                 font-size: 1rem;
                 font-weight: 300;
                 color: var(--text-secondary);
-                transition: transform .1s ease-in-out;
+                transition: transform .15s ease-in-out;
             }
          
             .icon-area {

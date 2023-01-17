@@ -4,7 +4,7 @@
         <h1>Bruno Marques</h1>
         <p><span class="baffle">Web Developer</span></p>
         <div data-aos="fade-right" class="social-links">
-            <% _social.links.map(link => {%>
+            <% social[0].links.map(link => {%>
                 <a href="<%= link.url %>" title="<%= link.title %>" target="_blank"><i class="fab <%= link.icon %>"></i></a>
             <% }); %>
         </div>
@@ -17,6 +17,20 @@
                 <p>
                     I'm a game / web developer living in São Paulo (Brazil), currently working as a Full Stack Developer. Check out my skills and projects below: 
                 </p>
+                <div class="stats-wrapper">
+                    <div class="icons-block-wrapper">
+                        <% skills[0].categories.map(cat => { %>
+                            <div class="icons-block">
+                                <p class="icons-category"><%= cat.title %></p>
+                                <% cat.skills.map(skill => { %>
+                                    <i class="<%= skill.icon %>" title="<%= skill.title %>"></i>
+                                <% }); %>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <div class="user-stats"> </div>
+                </div>
+
             </div>
             <div data-aos="fade-up" id="photo-liquid"></div>
         </div>
@@ -28,7 +42,7 @@
             <button type="button" class="btn btn--filter" data-filter=".uiux">UI / UX</button>
         </div>
         <div class="work-container">
-            <% _projects.sort((a, b) => new Date(b.date * 1000) - new Date(a.date * 1000)).map((project) => { %>
+            <% projects.sort((a, b) => new Date(b.date * 1000) - new Date(a.date * 1000)).map((project) => { %>
                 <div class="work-container__item <%= project.categories.reduce((acc, c) => `${c} ${acc}`, '') %>">
                     <div class="work-container__item--thumbnail">
                         <img src="<%= project.thumbnail %>" alt="<%= project.title %>">
@@ -48,7 +62,7 @@
                         <%- include('../components/modal', { project }); %>
                     <% } %>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
     </div>
 </main>
