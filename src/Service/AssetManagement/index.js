@@ -16,6 +16,7 @@ AssetManagement.init = (serveMode) => {
 
 AssetManagement.createFileStructure = () => {
     fs.mkdirSync('./dist/assets/js', { recursive: true });
+    fs.mkdirSync('./dist/assets/jsm', { recursive: true });
     fs.mkdirSync('./dist/assets/css', { recursive: true });
     fs.mkdirSync('./dist/assets/img', { recursive: true });
 }

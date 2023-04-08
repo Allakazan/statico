@@ -1,4 +1,6 @@
-function initThreeJSAboutMe() {
+import * as THREE from 'three';
+
+(() => {
     
     const wrapper = document.getElementById("photo-liquid");
     const canvasSize = {
@@ -32,7 +34,7 @@ function initThreeJSAboutMe() {
     const sizes = new THREE.Vector2(canvasSize.width - padding, canvasSize.height - padding)
     const offset = new THREE.Vector2(0, 0)
 
-    const geometry = new THREE.PlaneBufferGeometry(1, 1, 1, 1)
+    const geometry = new THREE.PlaneGeometry(1, 1, 1, 1)
 
     const uniforms = {
         u_image: { type: 't', value: texture },
@@ -120,4 +122,4 @@ function initThreeJSAboutMe() {
     }
 
     animate();
-}
+})();

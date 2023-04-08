@@ -1,8 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
     initAOS()
     initBaffle()
-    initThreeJS()
-    initThreeJSAboutMe()
     initIsotope()
     initModals()
 });

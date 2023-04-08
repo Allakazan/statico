@@ -25,9 +25,13 @@ html, body {
 #threejs {
     width: 100%;
     height: 100%;
-    opacity: .1;
+    opacity: .4;
     position: fixed;
     top: 0;
+}
+
+#photo-liquid {
+    aspect-ratio: 1 / 1;
 }
 
 #photo-liquid canvas {

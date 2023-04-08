@@ -1,4 +1,5 @@
 import fs from 'fs';
+import fse from 'fs-extra';
 import UglifyJS from 'uglify-js';
 import { getFileContents } from '../../utils/file.js'
 import glslify from 'glslify'
@@ -43,7 +44,15 @@ ScriptProcessing.startProcessing = async (files, serveMode = false) => {
 
     const minifyLocal = UglifyJS.minify(codeData.local, ScriptProcessing.options.app);
 
-    fs.writeFileSync('./dist/assets/js/app.bundle.js', ScriptProcessing.gelGLSL() + minifyLocal.code, { flag: 'w'})
+    fs.writeFileSync('./dist/assets/js/app.bundle.js', minifyLocal.code, { flag: 'w'})
+
+    fs.writeFileSync('./dist/assets/js/glsl.shaders.js', ScriptProcessing.gelGLSL(), { flag: 'w'})
+
+    const jsmFiles = fs.readdirSync('./public/assets/jsm');
+
+    for (const jsmFile of jsmFiles) {
+        fse.copySync('./public/assets/jsm/'+jsmFile, './dist/assets/jsm/' + jsmFile);
+    }
 
     console.log("Bundling app scripts")
 
