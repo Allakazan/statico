@@ -1,12 +1,26 @@
+@use "../utils/mixins" as m;
+
 .work-container {
     width: 100%;
     padding: 0 20%;
     //margin-bottom: 40px;
 
+
+    @include m.for-phone-only { padding: 0 10%; }
+    @include m.for-tablet-portrait-up { padding: 0 10%; }
+    @include m.for-tablet-landscape-up { padding: 0 12.5%; }
+    @include m.for-desktop-up { padding: 0 20%; }
+
+
     &__item {
         aspect-ratio: 1;
         width: 20%; // 30 for tablet and 60 for phones
         border: 1px solid transparent;
+
+        @include m.for-phone-only { width: 80%; }
+        @include m.for-tablet-portrait-up { width: 40%; }    
+        @include m.for-tablet-landscape-up { width: 25%; }
+        @include m.for-desktop-up { width: 20%; }
 
         &--thumbnail {
 
