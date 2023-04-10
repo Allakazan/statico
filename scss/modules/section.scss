@@ -1,3 +1,5 @@
+@use "../utils/mixins" as m;
+
 .section {
     width: 100%;
     position: relative;
@@ -9,6 +11,7 @@
 
     &__title {
         text-align: center;
+        z-index: 3;
 
         h1 {
             text-transform: uppercase;
@@ -28,6 +31,10 @@
             top:45%;
             left: 50%;
             transform: translate(-50%, -50%);
+
+            @include m.for-phone-only {    
+                margin-top: 80px;
+            }
         }
     }
 

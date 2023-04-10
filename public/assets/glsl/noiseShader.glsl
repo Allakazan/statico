@@ -6,6 +6,7 @@ uniform sampler2D u_image;
 uniform sampler2D u_imagehover;
 uniform float u_time;
 uniform bool u_show_goey;
+uniform float u_goey_size;
 
 varying vec2 v_uv;
 
@@ -35,7 +36,7 @@ void main() {
 		vec4 hover = texture2D(u_imagehover, v_uv);
 
 		vec2 circlePos = st + mouse;
-		float c = circle(circlePos, 0.3, 2.);
+		float c = circle(circlePos, u_goey_size, 2.);
 
 		float offx = v_uv.x + sin(v_uv.y + u_time * .1);
 		float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
