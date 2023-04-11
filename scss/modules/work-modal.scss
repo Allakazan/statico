@@ -1,3 +1,5 @@
+@use "../utils/mixins" as m;
+
 .modal-background {
     position: fixed;
     top: 0;
@@ -31,6 +33,20 @@
     background-color: var(--bg-color);
     grid-template-columns: 3fr 2fr;
 
+    @include m.for-phone-only {    
+        grid-template-columns: 1fr;
+        align-content: start;
+    }
+
+    @include m.for-tablet-portrait-up {    
+        grid-template-columns: 1fr;
+        align-content: start;
+    }
+
+    @include m.for-tablet-landscape-up {    
+        grid-template-columns: 3fr 2fr;
+    }
+
     &.oneline {
         grid-template-columns: 1fr;
     }
@@ -58,6 +74,7 @@
 
     .modal-description {
         padding: 50px;
+        overflow: auto;
 
         & > h1 {
             font-size: 2.3rem;
@@ -103,11 +120,53 @@
 ul.splide__list li {
     vertical-align: middle;
     display: inline-flex;
+
+    @include m.for-phone-only {    
+        height: 50vh !important;
+    }
+
+    @include m.for-tablet-portrait-up {    
+        height: 50vh !important;
+    }
+
+    @include m.for-tablet-landscape-up {    
+        height: calc(100vh - 53px) !important;
+    }
     
     & > img {
         width: 87%;
+
+        @include m.for-phone-only {    
+            width: 100%;
+        }
+    
+        @include m.for-tablet-portrait-up {    
+            width: 100%;
+        }
+    
+        @include m.for-tablet-landscape-up {    
+            width: 87%;
+        }
+
         max-height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         margin: 0 auto;
+    }
+}
+
+button.splide__arrow {
+    @include m.for-phone-only {    
+        width: 3em;
+        height: 3em;
+    }
+
+    @include m.for-tablet-portrait-up {    
+        width: 3em;
+        height: 3em;
+    }
+
+    @include m.for-tablet-landscape-up {    
+        width: 2em;
+        height: 2em;
     }
 }

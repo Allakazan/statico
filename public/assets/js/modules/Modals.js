@@ -6,6 +6,7 @@ function initModals() {
 
             let modal = e.currentTarget.nextElementSibling.cloneNode(true)
 
+            document.querySelector('body').style.overflow = 'hidden';
             document.querySelector('.modal-background').classList.add('active')
 
             setTimeout(function() {
@@ -23,6 +24,7 @@ function initModals() {
 
                 let closeModalAction = function() {
 
+                    document.querySelector('body').style.overflow = 'auto';
                     document.querySelector('.modal-background').classList.remove('active')
                     document.querySelector('.modal-wrapper').classList.remove('active')
             
