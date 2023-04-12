@@ -121,7 +121,7 @@ ul.splide__list li {
     vertical-align: middle;
     display: inline-flex;
 
-    @include m.for-phone-only {    
+    /*@include m.for-phone-only {    
         height: 50vh !important;
     }
 
@@ -131,7 +131,7 @@ ul.splide__list li {
 
     @include m.for-tablet-landscape-up {    
         height: calc(100vh - 53px) !important;
-    }
+    }*/
     
     & > img {
         width: 87%;

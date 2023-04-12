@@ -28,9 +28,6 @@ media:
   - type: image
     url: https://cdnb.artstation.com/p/assets/images/images/055/355/265/large/allakazan-rendernew2.jpg?1666748791
     title: Mecha Wazowski
-  - type: image
-    url: https://cdna.artstation.com/p/assets/images/images/055/355/264/large/allakazan-rendernew.jpg?1666748785
-    title: Mecha Wazowski
 langs:
   - maya-plain
 categories:

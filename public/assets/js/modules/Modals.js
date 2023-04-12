@@ -17,9 +17,16 @@ function initModals() {
 			    let splideInstance = new Splide('.modal-wrapper > .modal-content .modal-slider > .splide', {
                     type   : 'loop',
                     autoWidth: true,
+                    perPage: 1,
                     gap: '1em',
 	                focus  : 'center',
-	                height   : 'calc(100vh - 53px)'
+	                height   : 'calc(100vh - 53px)',
+                    flickPower: 6000,
+                    breakpoints: {
+                        900: {
+                            height: '50vh',
+                        },
+                    }
                 }).mount();
 
                 let closeModalAction = function() {
