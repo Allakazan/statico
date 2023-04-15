@@ -108,7 +108,7 @@ import * as THREE from 'three';
 
                 const correctRotation = {
                     x: (e.beta - 55) / 60,
-                    y: -e.gamma / 60
+                    y: e.gamma / 60
                 }
 
                 rotationValue = {
@@ -117,8 +117,8 @@ import * as THREE from 'three';
                 }
 
                 const mouseWindowFixed = new THREE.Vector2(
-                    scale(correctRotation.y, -0.8, 0.8, 0.2, 0.8),
-                    scale(correctRotation.x, -0.99, 0.99, 0.2, 0.8)
+                    scale(correctRotation.y, -0.8, 0.8, 0.2, 0.8) - .13,
+                    scale(correctRotation.x, -0.99, 0.99, 0.2, 0.8) - .13
                 )
 
                 uniforms.u_mouse.value = mouseWindowFixed;
@@ -146,7 +146,7 @@ import * as THREE from 'three';
 
         if (isMobile) {
             mesh.rotation.order = 'YXZ'
-            uniforms.u_goey_size.value = 0.1
+            uniforms.u_goey_size.value = 0.05
         }
         
         mesh.rotation.set(
