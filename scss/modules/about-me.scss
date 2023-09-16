@@ -66,6 +66,37 @@
 
         .user-stats {
             flex: 1;
+
+            .stats-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .top-langs {
+                padding: 5px;
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+
+                    i {
+                        flex: 0;
+                        min-width: 18px;
+                        line-height: 22px;
+                    }
+
+                    p {
+                        word-break: break-all;
+                        flex: 1;
+                        font-size: 1.1rem;
+                    }
+
+                    span {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
         }
     }
 

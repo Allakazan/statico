@@ -12,7 +12,7 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
     renderer.domElement.id = 'threejs'
     document.body.appendChild( renderer.domElement );
 
-    const geometry = new THREE.TorusGeometry( 6, 3.3, 30, 60 );
+    const geometry = new THREE.TorusGeometry( 6, 3.3, 20, 40 );
 
     scene.fog = new THREE.Fog( 0x000000, 10, 40 );
     const material = new THREE.MeshMatcapMaterial({ color: 0xffffff, fog: true, flatShading: false });
@@ -31,7 +31,7 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
         uniforms: {
             'tDiffuse': { value: null },
             'brightness': { value: 0 },
-            'contrast': { value: 1.34 },
+            'contrast': { value: 1 },
         },
         vertexShader: GLSL_vertexShader,
         fragmentShader: GLSL_toneMapping
@@ -42,7 +42,7 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
         uniforms: {
             'resolution': { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
             'tDiffuse': { value: null },
-            'tAscii': new THREE.Uniform( new THREE.TextureLoader().load( "assets/img/8x16_ascii_font_sorted.gif" )),    
+            'tAscii': new THREE.Uniform( new THREE.TextureLoader().load( "assets/img/8x16_ascii_font_minimal.gif" )),    
         },
         vertexShader: GLSL_vertexShader,
         fragmentShader: GLSL_asciiShader

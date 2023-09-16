@@ -23,11 +23,19 @@ void main() {
 	// tip: use the following formula to keep the good ratio of your coordinates
 	st.y *= u_res.y / u_res.x;
 
+	//st.x -= mod(st.x, 1.0 / 50.0);
+	//st.y -= mod(st.y, 1.0 / 50.0);
+
 	// We readjust the mouse coordinates
 	vec2 mouse = u_mouse * -0.75;
 	// tip2: do the same for your mouse
 	mouse.y *= u_res.y / u_res.x;
 	mouse *= -1.;
+
+  	vec2 pixelUv = v_uv.xy;
+
+	pixelUv.x -= mod(pixelUv.x, 1.0 / 100.0);
+	pixelUv.y -= mod(pixelUv.y, 1.0 / 100.0);
 
 	vec4 image = texture2D(u_image, v_uv);
 
@@ -36,16 +44,20 @@ void main() {
 		vec4 hover = texture2D(u_imagehover, v_uv);
 
 		vec2 circlePos = st + mouse;
-		float c = circle(circlePos, u_goey_size, 2.);
+		float c = circle(circlePos, u_goey_size, 2.3);
 
-		float offx = v_uv.x + sin(v_uv.y + u_time * .1);
-		float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
+		float offx = pixelUv.x + sin(pixelUv.y + u_time * .1);
+		float offy = pixelUv.y - u_time * 0.1 - cos(u_time * .001) * .01;
 
 		float n = snoise3(vec3(offx, offy, u_time * .1) * 4.) * .5;
 
-		float finalMask = smoothstep(0.45, 0.55, n + c);
+		float stepMask = step(.5, n + c);
+		
+		//float finalMask = smoothstep(0.45, 0.55, stepMask);
 
-		vec4 finalImage = mix(image, hover, finalMask);
+		stepMask -= mod(stepMask, 1.0 / 200.);
+
+		vec4 finalImage = mix(image, hover, stepMask);
 
 		//gl_FragColor = vec4(vec3(n), 1.);
 

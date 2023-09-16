@@ -2,14 +2,14 @@ varying vec2 v_uv;
 uniform vec2 resolution;
 uniform sampler2D tDiffuse;
 uniform sampler2D tAscii;
-const vec2 fontSize = vec2(8.0,16.0);
-const float numChars = 256.0; //128.0;
+const vec2 fontSize = vec2(12.0,16.0);
+const float numChars = 11.0; //128.0;
 
 vec4 lookupASCII(float asciiValue){
 
     vec2 pos = mod(gl_FragCoord.xy,fontSize.xy);
 
-    pos = pos / vec2(2048.0,16.0);
+    pos = pos / vec2(132.0,16.0);
     pos.x += asciiValue;
     return vec4(texture2D(tAscii,pos).rgb,1.0);
     
@@ -31,5 +31,5 @@ void main(void) {
     float brightness = (avarage.x+avarage.y+avarage.z)*0.33333;
     vec4 clampedColor = floor(avarage*8.0)/8.0;
     float asciiChar = floor((1.0-brightness)*numChars)/numChars;
-    gl_FragColor = clampedColor*lookupASCII(asciiChar);
+    gl_FragColor = lookupASCII(asciiChar);
 }
